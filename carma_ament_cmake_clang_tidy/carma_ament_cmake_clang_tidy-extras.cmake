@@ -11,13 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Copyright 2024 Leidos
+#
+# Changes:
+#   - replaced ament_clang_tidy with carma_ament_clang_tidy to avoid name collisions
+#   - replaced ament_cmake_clang_tidy with carma_ament_cmake_clang_tidy to avoid name collisions
 
-from ament_pep257.main import main
-import pytest
+# copied from carma_ament_cmake_clang_tidy/carma_ament_cmake_clang_tidy-extras.cmake
 
+find_package(ament_cmake_test QUIET REQUIRED)
 
-@pytest.mark.linter
-@pytest.mark.pep257
-def test_pep257():
-    rc = main(argv=['ament_clang_tidy', 'test'])
-    assert rc == 0, 'Found docblock style errors'
+include("${carma_ament_cmake_clang_tidy_DIR}/carma_ament_clang_tidy.cmake")
+
+ament_register_extension("ament_lint_auto" "carma_ament_cmake_clang_tidy"
+"carma_ament_cmake_clang_tidy_lint_hook.cmake")

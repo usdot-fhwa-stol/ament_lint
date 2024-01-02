@@ -11,6 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Copyright 2024 Leidos
+#
+# Changes:
+#   - replaced ament_clang_tidy with carma_ament_clang_tidy to avoid name collisions
 
 file(GLOB_RECURSE _source_files FOLLOW_SYMLINKS
   "*.c"
@@ -24,5 +29,5 @@ file(GLOB_RECURSE _source_files FOLLOW_SYMLINKS
 )
 if(_source_files)
   message(STATUS "Added test 'clang_tidy' to check C / C++ code style")
-  ament_clang_tidy()
+  carma_ament_clang_tidy()
 endif()

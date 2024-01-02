@@ -13,6 +13,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Copyright 2024 Leidos
+#
+# Changes:
+#   - replaced ament_clang_tidy with carma_ament_clang_tidy to avoid name collisions
 
 import argparse
 from collections import defaultdict
@@ -48,8 +53,8 @@ def main(argv=sys.argv[1:]):
         'paths',
         nargs='*',
         default=[os.curdir],
-        help='If <path> is a directory, ament_clang_tidy will recursively search it for'
-             ' "compile_commands.json" files. If <path> is a file, ament_clang_tidy will'
+        help='If <path> is a directory, carma_ament_clang_tidy will recursively search it for'
+             ' "compile_commands.json" files. If <path> is a file, carma_ament_clang_tidy will'
              ' treat it as a "compile_commands.json" file')
 
     # not using a file handle directly

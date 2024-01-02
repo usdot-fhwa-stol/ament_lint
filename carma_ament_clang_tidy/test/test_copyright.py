@@ -11,12 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Copyright 2024 Leidos
+#
+# Changes:
+#   - replaced ament_clang_tidy with carma_ament_clang_tidy to avoid name collisions
 
-# copied from ament_cmake_clang_tidy/ament_cmake_clang_tidy-extras.cmake
+from ament_copyright.main import main
+import pytest
 
-find_package(ament_cmake_test QUIET REQUIRED)
 
-include("${ament_cmake_clang_tidy_DIR}/ament_clang_tidy.cmake")
-
-ament_register_extension("ament_lint_auto" "ament_cmake_clang_tidy"
-"ament_cmake_clang_tidy_lint_hook.cmake")
+@pytest.mark.copyright
+@pytest.mark.linter
+def test_copyright():
+    rc = main(argv=['carma_ament_clang_tidy', 'test'])
+    assert rc == 0, 'Found errors'
