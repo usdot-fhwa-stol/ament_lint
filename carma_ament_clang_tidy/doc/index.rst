@@ -1,4 +1,4 @@
-ament_clang_tidy
+carma_ament_clang_tidy
 ==================
 
 Checks the code style of C / C++ source files using `Clang-Tidy
@@ -16,7 +16,7 @@ have already been installed. ``compile_commands.json`` files should have already
 
 .. code:: sh
 
-    ament_clang_tidy [<path> ...]
+    carma_ament_clang_tidy [<path> ...]
 
 If ``<path>`` is a directory, it will be recursively searched for
 "compile_commands.json" files (this is usually the ``build`` directory of a
@@ -48,5 +48,5 @@ supplied with a file name.
 How to run the check from within a CMake ament package as part of the tests?
 ----------------------------------------------------------------------------
 
-The CMake integration is provided by the package `ament_cmake_clang_tidy
+The CMake integration is provided by the package `carma_ament_cmake_clang_tidy
 <https://github.com/ament/ament_lint>`_.

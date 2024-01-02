@@ -1,4 +1,5 @@
 # Copyright 2019 Open Source Robotics Foundation, Inc.
+# Copyright 2024 Leidos
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,18 +12,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Changes from original Open Source Robotics Foundation, Inc. version:
+#   - replaced ament_clang_tidy with carma_ament_clang_tidy to avoid name collisions
 
-file(GLOB_RECURSE _source_files FOLLOW_SYMLINKS
-  "*.c"
-  "*.cc"
-  "*.cpp"
-  "*.cxx"
-  "*.h"
-  "*.hh"
-  "*.hpp"
-  "*.hxx"
-)
-if(_source_files)
-  message(STATUS "Added test 'clang_tidy' to check C / C++ code style")
-  ament_clang_tidy()
-endif()
+from ament_copyright.main import main
+import pytest
+
+
+@pytest.mark.copyright
+@pytest.mark.linter
+def test_copyright():
+    rc = main(argv=['carma_ament_clang_tidy', 'test'])
+    assert rc == 0, 'Found errors'
