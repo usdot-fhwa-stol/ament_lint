@@ -17,6 +17,8 @@
 #
 # Changes from original Open Source Robotics Foundation, Inc. version:
 #   - replaced ament_clang_tidy with carma_ament_clang_tidy to avoid name collisions
+#   - uncomment clang-tidy binary name from bin_names to lift
+#     restriction on specific clang-tidy version
 
 import argparse
 from collections import defaultdict
@@ -100,7 +102,7 @@ def main(argv=sys.argv[1:]):
         return 1
 
     bin_names = [
-        # 'clang-tidy',
+        'clang-tidy',
         'clang-tidy-6.0',
     ]
     clang_tidy_bin = find_executable(bin_names)
