@@ -19,6 +19,8 @@
 #   - replaced ament_clang_tidy with carma_ament_clang_tidy to avoid name collisions
 #   - uncomment clang-tidy binary name from bin_names to lift
 #     restriction on specific clang-tidy version
+#   - remove clang-tidy-6.0 binary name because it can be abstracted by
+#     the clang-tidy binary
 
 import argparse
 from collections import defaultdict
@@ -102,8 +104,7 @@ def main(argv=sys.argv[1:]):
         return 1
 
     bin_names = [
-        'clang-tidy',
-        'clang-tidy-6.0',
+        'clang-tidy'
     ]
     clang_tidy_bin = find_executable(bin_names)
     if not clang_tidy_bin:
