@@ -21,6 +21,10 @@
 #     restriction on specific clang-tidy version
 #   - remove clang-tidy-6.0 binary name because it can be abstracted by
 #     the clang-tidy binary
+#   - replace original subprocess invocation error message with clang-tidy's
+#     command output. This allows users to see what clang-tidy flagged as
+#     Problematic. A non-zero return for clang-tidy is not an invocation
+#     error.
 
 import argparse
 from collections import defaultdict
@@ -168,9 +172,7 @@ def main(argv=sys.argv[1:]):
                 output += subprocess.check_output(full_cmd,
                                                   stderr=subprocess.DEVNULL).strip().decode()
             except subprocess.CalledProcessError as e:
-                print('The invocation of "%s" failed with error code %d: %s' %
-                      (os.path.basename(clang_tidy_bin), e.returncode, e),
-                      file=sys.stderr)
+                print(e.output.decode(), file=sys.stderr)
         return (files, output)
 
     files = []
